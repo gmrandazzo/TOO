@@ -28,7 +28,7 @@ What I did is:
 
 ## Releases 
 
-[tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl](../blob/master/packages/tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl)
+[tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl](https://github.com/gmrandazzo/TOO/blob/master/packages/tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl)
 
 
 ## Compile tensorflow
