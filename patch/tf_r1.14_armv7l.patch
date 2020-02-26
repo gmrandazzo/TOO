@@ -1,0 +1,43 @@
+diff -Naur orig/tensorflow/tensorflow/contrib/mpi_collectives/BUILD tensorflow.ok/tensorflow/contrib/mpi_collectives/BUILD
+--- orig/tensorflow/tensorflow/contrib/mpi_collectives/BUILD	2020-02-26 07:42:42.856679323 +0000
++++ tensorflow.ok/tensorflow/contrib/mpi_collectives/BUILD	2020-02-26 07:44:45.071219505 +0000
+@@ -53,6 +53,7 @@
+         ":mpi_defines",
+         ":mpi_message_proto_cc",
+         "//third_party/mpi",
++	"//tensorflow/stream_executor",
+     ],
+ )
+ 
+diff -Naur orig/tensorflow/tensorflow/core/platform/platform.h tensorflow.ok/tensorflow/core/platform/platform.h
+--- orig/tensorflow/tensorflow/core/platform/platform.h	2020-02-26 07:42:48.653003029 +0000
++++ tensorflow.ok/tensorflow/core/platform/platform.h	2020-02-26 07:44:32.602577885 +0000
+@@ -45,10 +45,12 @@
+ 
+ // Require an outside macro to tell us if we're building for Raspberry Pi or
+ // another ARM device that's not a mobile platform.
+-#if !defined(RASPBERRY_PI) && !defined(ARM_NON_MOBILE)
+-#define IS_MOBILE_PLATFORM
+-#endif  // !defined(RASPBERRY_PI) && !defined(ARM_NON_MOBILE)
+-
++//#if !defined(RASPBERRY_PI) && !defined(ARM_NON_MOBILE)
++//#define IS_MOBILE_PLATFORM
++//#endif  // !defined(RASPBERRY_PI) && !defined(ARM_NON_MOBILE)
++#if defined(IS_MOBILE_PLATFORM)
++#error Wrong platform, stop building...
++#endif
+ #else
+ // If no platform specified, use:
+ #define PLATFORM_POSIX
+diff -Naur orig/tensorflow/tensorflow/tensorflow.bzl tensorflow.ok/tensorflow/tensorflow.bzl
+--- orig/tensorflow/tensorflow/tensorflow.bzl	2020-02-26 07:42:55.325373873 +0000
++++ tensorflow.ok/tensorflow/tensorflow.bzl	2020-02-26 07:44:11.361472208 +0000
+@@ -1770,7 +1770,7 @@
+         name = name + "_check_deps",
+         disallowed_deps = [
+             clean_dep("//tensorflow/core:framework"),
+-            clean_dep("//tensorflow/core:lib"),
++            #clean_dep("//tensorflow/core:lib"),
+         ],
+         deps = deps + if_cuda_is_configured_compat(cuda_deps) + if_rocm_is_configured(rocm_deps),
+     )
