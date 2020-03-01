@@ -40,7 +40,9 @@ ubuntu 18.04 armv7l
 
 * install the dependencies
 ```
-pip3 install --user scipy-1.4.0-cp36-cp36-linux_armv7l.whl --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+git clone https://github.com/gmrandazzo/TOO.git
+cd TOO/packages/wheel
+pip3 install --user scipy-1.4.0-cp36-cp36-linux_armv7l.whl 
 apt install libopenmpi2 openmpi-bin openmpi-common
 ```
 
@@ -48,12 +50,12 @@ apt install libopenmpi2 openmpi-bin openmpi-common
 * if you whant tensorflow 1.14 please use this command:
 
 ```
-pip3 install --user tensorflow==1.14.1 --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+pip3 install --user tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl
 ```
 
 if you whant tensorflow 2.0 please use this command:
 ```
-pip3 install --user tensorflow==2.0.1 --extra-index-url --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+pip3 install --user tensorflow-2.0.1-cp36-cp36m-linux_armv7l.whl
 ```
 
 
