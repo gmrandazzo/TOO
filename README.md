@@ -1,5 +1,5 @@
-# TOO
-TOO - Tensorflow On Odroid
+# TOO - Tensorflow On Odroid
+
 Welcome to TOO, Tensorflow On Odroid.
 
 In this repository you will find builds for tensorflow on odroid running Ubuntu.
@@ -33,22 +33,39 @@ ubuntu 18.04 armv7l
 -------------------
 
 [tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl](https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/tensorflow-1.14.1-cp36-cp36m-linux_armv7l.whl)
+[tensorflow-2.0.1-cp36-cp36m-linux_armv7l.whl](https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/tensorflow-2.0.1-cp36-cp36m-linux_armv7l.whl)
 
 
 ## Install tensorflow
 
-pip3 install --user tensorflow==1.14.1 --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+* install the dependencies
+```
+pip3 install --user scipy-1.4.0-cp36-cp36-linux_armv7l.whl --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+apt install libopenmpi2 openmpi-bin openmpi-common
+```
 
-## Install keras
+
+* if you whant tensorflow 1.14 please use this command:
+
+```
+pip3 install --user tensorflow==1.14.1 --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+```
+
+if you whant tensorflow 2.0 please use this command:
+```
+pip3 install --user tensorflow==2.0.1 --extra-index-url --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
+```
+
+
+## Install keras only for tensorflow 1.14!
 To install keras you need a recent scipy package. For that reason you can also find in this repository 
 one of the recent scipy wheel package. Please download and install it as user
 
 ```
-pip3 install --user scipy-1.4.0-cp36-cp36m-linux_armv7l.whl --extra-index-url https://github.com/gmrandazzo/TOO/blob/master/packages/wheel/
 pip3 install --user keras
 ```
 
-# Compile tensorflow 1.14 on Ubuntu 18.04
+# Compile tensorflow 1.14/2.0 on Ubuntu 18.04
 
 To compile tensorflow you need at list 8GB of memory.
 This means that your odroid is proided by 4GB of ram.
@@ -110,6 +127,12 @@ cd output
 sudo cp bazel /usr/local/bin
 ```
 
+* or copy the bazel 0.26 binary version that you can find here in the binary directory
+```
+cp packages/binary/bazel-0.26.1-armv7l /usr/local/bin
+```
+
+
 * install tensorflow/keras dependencies
 ```
 apt install libopenmpi-dev libopenmpi2 openmpi-bin openmpi-common
@@ -119,13 +142,20 @@ apt install libopenmpi-dev libopenmpi2 openmpi-bin openmpi-common
 ```
 git clone https://github.com/tensorflow/tensorflow.git
 cd tensorflow
-git checkout r1.14
 ```
+* then chekcout r1.14 and apply the patch to avoid compilation failures
 
-* Apply the patch to avoid compilation failures
 ```
+git checkout r1.14 
 patch -p1 < <path where is the patch>/tf_r1.14_armv7l.patch 
 ```
+
+* or checkout the new 2.0 version and apply the apposite patch to avoid compilation failure
+```
+git checkout r2.0
+patch -p1 < <path where is the patch>/tf_r2.0.1_armv7l.patch
+```
+
 
 * Run configure and setup the followig variables:
 ```
@@ -244,7 +274,6 @@ pip3 install --user dist/scipy-1.4.0-cp36-cp36m-linux_armv7l.whl
 
 ```
 
-## Author
+## Author and acknowledgments
  - Giuseppe Marco Randazzo <gmrandazzo AT gmail DOT com>
-
 
