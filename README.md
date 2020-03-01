@@ -37,13 +37,16 @@ ubuntu 18.04 armv7l
 
 
 ## Install tensorflow
-
-* install the dependencies
+* clone the repository and enter on the wheel directory
 ```
 git clone https://github.com/gmrandazzo/TOO.git
 cd TOO/packages/wheel
+```
+
+* install the dependencies
+```
 pip3 install --user scipy-1.4.0-cp36-cp36-linux_armv7l.whl 
-apt install libopenmpi2 openmpi-bin openmpi-common
+sudo apt install libopenmpi2 openmpi-bin openmpi-common
 ```
 
 
@@ -83,7 +86,7 @@ pip3 install keras_preprocessing --no-deps
 
 * install gcc-8
 ```
-apt install gcc-8 libgcc-8-dev
+sudo apt install gcc-8 libgcc-8-dev
 
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 \
     --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-7 \
@@ -106,7 +109,7 @@ sudo update-alternative --config gcc
 
 * install openjdk-11
 ```
-apt install openjdk-11-jre openjdk-11-jdk
+sudo apt install openjdk-11-jre openjdk-11-jdk
 ```
 
 * select openjdk-11
@@ -137,7 +140,7 @@ cp packages/binary/bazel-0.26.1-armv7l /usr/local/bin
 
 * install tensorflow/keras dependencies
 ```
-apt install libopenmpi-dev libopenmpi2 openmpi-bin openmpi-common
+sudo apt install libopenmpi-dev libopenmpi2 openmpi-bin openmpi-common
 ```
 
 * download tensorflow 
@@ -259,9 +262,9 @@ Then in /tmp/tensorflow_pkg you will find the final package to install with pip3
 
 * compile scipy 1.4.0
 ```
-apt install libblas-dev liblapack-dev python3-pybind11 pybind11-dev
-apt install build-essential libatlas-base-dev gfortran libfreetype6-dev python3-setuptools
-apt install protobuf-compiler libprotobuf-dev openssl libssl-dev libcurl4-openssl-dev
+sudo apt install libblas-dev liblapack-dev python3-pybind11 pybind11-dev
+sudo apt install build-essential libatlas-base-dev gfortran libfreetype6-dev python3-setuptools
+sudo apt install protobuf-compiler libprotobuf-dev openssl libssl-dev libcurl4-openssl-dev
 
 pip3 install --user cython
 pip3 install --user numpy
